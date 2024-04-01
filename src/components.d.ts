@@ -6,17 +6,34 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface CernicaAmbulanceWlApp {
+        "ambulanceId": string;
+        "apiBase": string;
+        "basePath": string;
+    }
     interface CernicaAmbulanceWlEditor {
         "entryId": string;
     }
     interface CernicaAmbulanceWlList {
+        "ambulanceId": string;
+        "apiBase": string;
     }
 }
 export interface CernicaAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCernicaAmbulanceWlEditorElement;
 }
+export interface CernicaAmbulanceWlListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCernicaAmbulanceWlListElement;
+}
 declare global {
+    interface HTMLCernicaAmbulanceWlAppElement extends Components.CernicaAmbulanceWlApp, HTMLStencilElement {
+    }
+    var HTMLCernicaAmbulanceWlAppElement: {
+        prototype: HTMLCernicaAmbulanceWlAppElement;
+        new (): HTMLCernicaAmbulanceWlAppElement;
+    };
     interface HTMLCernicaAmbulanceWlEditorElementEventMap {
         "editor-closed": string;
     }
@@ -34,25 +51,46 @@ declare global {
         prototype: HTMLCernicaAmbulanceWlEditorElement;
         new (): HTMLCernicaAmbulanceWlEditorElement;
     };
+    interface HTMLCernicaAmbulanceWlListElementEventMap {
+        "entry-clicked": string;
+    }
     interface HTMLCernicaAmbulanceWlListElement extends Components.CernicaAmbulanceWlList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCernicaAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLCernicaAmbulanceWlListElement, ev: CernicaAmbulanceWlListCustomEvent<HTMLCernicaAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCernicaAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLCernicaAmbulanceWlListElement, ev: CernicaAmbulanceWlListCustomEvent<HTMLCernicaAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLCernicaAmbulanceWlListElement: {
         prototype: HTMLCernicaAmbulanceWlListElement;
         new (): HTMLCernicaAmbulanceWlListElement;
     };
     interface HTMLElementTagNameMap {
+        "cernica-ambulance-wl-app": HTMLCernicaAmbulanceWlAppElement;
         "cernica-ambulance-wl-editor": HTMLCernicaAmbulanceWlEditorElement;
         "cernica-ambulance-wl-list": HTMLCernicaAmbulanceWlListElement;
     }
 }
 declare namespace LocalJSX {
+    interface CernicaAmbulanceWlApp {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
+        "basePath"?: string;
+    }
     interface CernicaAmbulanceWlEditor {
         "entryId"?: string;
         "onEditor-closed"?: (event: CernicaAmbulanceWlEditorCustomEvent<string>) => void;
     }
     interface CernicaAmbulanceWlList {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
+        "onEntry-clicked"?: (event: CernicaAmbulanceWlListCustomEvent<string>) => void;
     }
     interface IntrinsicElements {
+        "cernica-ambulance-wl-app": CernicaAmbulanceWlApp;
         "cernica-ambulance-wl-editor": CernicaAmbulanceWlEditor;
         "cernica-ambulance-wl-list": CernicaAmbulanceWlList;
     }
@@ -61,6 +99,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "cernica-ambulance-wl-app": LocalJSX.CernicaAmbulanceWlApp & JSXBase.HTMLAttributes<HTMLCernicaAmbulanceWlAppElement>;
             "cernica-ambulance-wl-editor": LocalJSX.CernicaAmbulanceWlEditor & JSXBase.HTMLAttributes<HTMLCernicaAmbulanceWlEditorElement>;
             "cernica-ambulance-wl-list": LocalJSX.CernicaAmbulanceWlList & JSXBase.HTMLAttributes<HTMLCernicaAmbulanceWlListElement>;
         }
