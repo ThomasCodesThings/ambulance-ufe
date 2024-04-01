@@ -6,20 +6,6 @@ import { WaitingListEntry } from '../../../api/ambulance-wl';
 
 
 describe('cernica-ambulance-wl-list', () => {
-  const sampleEntries: WaitingListEntry[] = [
-    {
-      id: "entry-1",
-      patientId: "p-1",
-      name: "Juraj Prvý",
-      waitingSince: "20240203T12:00",
-      estimatedDurationMinutes: 20
-    }, {
-      id: "entry-2",
-      patientId: "p-2",
-      name: "James Druhý",
-      waitingSince: "20240203T12:05",
-      estimatedDurationMinutes: 5
-    }];
 
 let mock: MockAdapter;
 
