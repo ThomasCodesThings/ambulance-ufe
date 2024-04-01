@@ -7,12 +7,11 @@ describe('cernica-ambulance-wl-list', () => {
       components: [CernicaAmbulanceWlList],
       html: `<cernica-ambulance-wl-list></cernica-ambulance-wl-list>`,
     });
-    expect(page.root).toEqualHtml(`
-      <cernica-ambulance-wl-list>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
-      </cernica-ambulance-wl-list>
-    `);
+
+    const wlList = page.rootInstance as CernicaAmbulanceWlList;
+    const expectedPatients = wlList?.waitingPatients?.length
+    const items = page.root.shadowRoot.querySelectorAll("md-list-item");
+    expect(items.length).toEqual(expectedPatients);
+
   });
 });
